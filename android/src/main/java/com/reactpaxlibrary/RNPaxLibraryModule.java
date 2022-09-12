@@ -9,12 +9,15 @@ import com.pax.dal.ICashDrawer;
 import com.pax.dal.IDAL;
 import com.pax.dal.IPrinter;
 import com.pax.neptunelite.api.NeptuneLiteUser;
+import android.graphics.Bitmap;
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
 
 public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
 
     private static final String NAME = "Pax";
     private final ReactApplicationContext reactContext;
-
+    private QRGEncoder qrgEncoder;
     private IDAL dal;
     private IPrinter printer;
     private ICashDrawer cashDrawer;
@@ -45,6 +48,22 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             printer.printStr(text, null);
             printer.start();
             printer.cutPaper(cutMode.intValue());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ReactMethod
+    public void printBitmap(String inputValue, int smallerDimension) {
+        try {
+            QRGEncoder qrgEncoder = new QRGEncoder(inputValue, null, QRGContents.Type.TEXT, smallerDimension);
+            // Getting QR-Code as Bitmap
+            Bitmap bitmap = qrgEncoder.getBitmap();
+            // Setting Bitmap to ImageView
+            printer.init();
+            printer.printBitmap(bitmap);
+            printer.start();
+//            printer.cutPaper(cutMode.intValue());
         } catch (Exception e) {
             e.printStackTrace();
         }

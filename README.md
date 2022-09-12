@@ -89,6 +89,22 @@ import Pax from "react-native-pax-library";
 Pax.printStr("Hello World", Pax.PARTIAL_CUT);
 ```
 
+## Printing Bitmap
+
+You can print a QR code using the method `printBitmap(inputValue: string, smallerDimension: number):void`
+
+Just pass in the text string you want to convert into a QR.
+
+SmallerDimension accepts a number that will be the size of the QR code. Standard is 500.
+
+```js
+import Pax from "react-native-pax-library";
+
+// ...
+
+Pax.printBitmap("https://www.google.com/", 500);
+```
+
 ## Opening Cash Drawer
 
 If you have a cash drawer linked to your Pax device, you will be able to open it automatically using the method `openDrawer(): Promise<any>`
@@ -99,9 +115,9 @@ The result returned from this method is a promise that resolves with the result 
 // ...
 
 try {
-  const result = await Pax.openDrawer();
+	const result = await Pax.openDrawer();
 } catch (error) {
-  console.error("Unable to open Cash Drawer.");
+	console.error("Unable to open Cash Drawer.");
 }
 ```
 

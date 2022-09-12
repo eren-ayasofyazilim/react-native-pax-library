@@ -63,7 +63,6 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             printer.init();
             printer.printBitmap(bitmap);
             printer.start();
-//            printer.cutPaper(cutMode.intValue());
         } catch (Exception e) {
             e.printStackTrace();
         }

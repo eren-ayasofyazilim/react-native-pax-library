@@ -1,6 +1,10 @@
 
 package com.reactpaxlibrary;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -9,15 +13,12 @@ import com.pax.dal.ICashDrawer;
 import com.pax.dal.IDAL;
 import com.pax.dal.IPrinter;
 import com.pax.neptunelite.api.NeptuneLiteUser;
-import android.graphics.Bitmap;
-import androidmads.library.qrgenearator.QRGContents;
-import androidmads.library.qrgenearator.QRGEncoder;
 
 public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
 
     private static final String NAME = "Pax";
     private final ReactApplicationContext reactContext;
-    private QRGEncoder qrgEncoder;
+
     private IDAL dal;
     private IPrinter printer;
     private ICashDrawer cashDrawer;
@@ -47,22 +48,21 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             printer.setGray(3);
             printer.printStr(text, null);
             printer.start();
-            printer.cutPaper(cutMode.intValue());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @ReactMethod
-    public void printBitmap(String inputValue, int smallerDimension) {
+    public void printBitmap(String base64, Double cutMode) {
         try {
-            QRGEncoder qrgEncoder = new QRGEncoder(inputValue, null, QRGContents.Type.TEXT, smallerDimension);
-            // Getting QR-Code as Bitmap
-            Bitmap bitmap = qrgEncoder.getBitmap();
-            // Setting Bitmap to ImageView
+            byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
             printer.init();
             printer.printBitmap(bitmap);
             printer.start();
+            printer.cutPaper(cutMode.intValue());
         } catch (Exception e) {
             e.printStackTrace();
         }

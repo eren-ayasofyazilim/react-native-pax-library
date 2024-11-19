@@ -4,7 +4,7 @@ declare var Pax: {
 
 	printStr: (text: string, cutMode?: number) => void;
 	openDrawer: () => Promise<any>;
-	printBitmap: (inputValue: string, smallerDimension: number) => void;
+	printBitmap: (inputValue: string, cutMode?: number) => void;
 };
 
 export default Pax;

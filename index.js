@@ -12,7 +12,7 @@ export default {
 	openDrawer() {
 		return Pax.openDrawer();
 	},
-	printBitmap(inputValue, smallerDimension) {
-		Pax.printBitmap(inputValue, smallerDimension);
-	},
+	printBitmap(base64, cutMode) {
+    		Pax.printBitmap(base64, cutMode === undefined ? 0 : cutMode);
+  	},
 };

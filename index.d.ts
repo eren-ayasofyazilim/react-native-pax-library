@@ -3,7 +3,7 @@ declare var Pax: {
 	PARTIAL_CUT: number;
 
 	printStr: (text: string, cutMode?: number) => void;
-	printText: (text: string, grayLevel:number, alignMode:number, cutMode?: number) => void;
+	printText: (text: string, grayLevel:number, cutMode?: number) => void;
 	openDrawer: () => Promise<any>;
 	printBitmap: (inputValue: string, cutMode?: number) => void;
 };

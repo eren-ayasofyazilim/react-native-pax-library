@@ -53,6 +53,18 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
         }
     }
 
+        @ReactMethod
+    public void printText(String text, int grayLevel, Double cutMode, ) {
+        try {
+            printer.init();
+            printer.setGray(grayLevel);
+            printer.printStr(text, null);
+            printer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @ReactMethod
     public void printBitmap(String base64, Double cutMode) {
         try {

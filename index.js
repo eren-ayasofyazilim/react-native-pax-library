@@ -9,6 +9,9 @@ export default {
 	printStr(text, cutMode) {
 		Pax.printStr(text, cutMode === undefined ? 0 : cutMode);
 	},
+	printText(text, grayLevel, cutMode) {
+		Pax.printText(text, grayLevel, cutMode === undefined ? 0 : cutMode);
+	},
 	openDrawer() {
 		return Pax.openDrawer();
 	},

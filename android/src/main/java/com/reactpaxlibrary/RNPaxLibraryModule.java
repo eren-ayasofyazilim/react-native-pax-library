@@ -54,7 +54,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     }
 
         @ReactMethod
-    public void printText(String text, int grayLevel, int alignMode,  Double cutMode) {
+    public void printText(String text, int grayLevel, short alignMode,  Double cutMode) {
         try {
             printer.init();
             printer.setGray(grayLevel);

@@ -7,7 +7,7 @@ declare var Pax: {
     text: string,
     grayLevel: number,
     large: boolean,
-    cutMode?: number
+    invert?: boolean
   ) => void;
   printQRCode: (text: string) => void;
   printBarcode: (text: string) => void;

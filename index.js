@@ -9,8 +9,8 @@ export default {
   printStr(text, cutMode) {
     Pax.printStr(text, cutMode === undefined ? 0 : cutMode);
   },
-  printText(text, grayLevel, large, cutMode) {
-    Pax.printText(text, grayLevel, large, cutMode === undefined ? 0 : cutMode);
+  printText(text, grayLevel, large, invert) {
+    Pax.printText(text, grayLevel, large, !!invert);
   },
   printQRCode(text) {
     Pax.printQRCode(text);

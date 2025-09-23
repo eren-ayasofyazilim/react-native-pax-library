@@ -64,12 +64,13 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void printText(String text, int grayLevel, boolean large, Double cutMode) {
+    public void printText(String text, int grayLevel, boolean large, boolean invert) {
         try {
             printer.init();
             printer.setGray(grayLevel);
             printer.doubleWidth(large, large);
             printer.doubleHeight(large, large);
+            printer.invert(invert);
             printer.printStr(text, null);
             printer.start();
         } catch (Exception e) {

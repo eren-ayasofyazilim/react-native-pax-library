@@ -23,6 +23,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     private IPrinter printer;
     private ICashDrawer cashDrawer;
     private static QRCodeUtil qrcodeUtility;
+    private static BarcodeWriter barcodeUtility;
 
 
     public RNPaxLibraryModule(ReactApplicationContext reactContext) {
@@ -34,6 +35,15 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             printer = dal.getPrinter();
             cashDrawer = dal.getCashDrawer();
             qrcodeUtility = new QRCodeUtil();
+            BarcodeWriter barcodeUtility = new BarcodeWriter(){
+                Format = BarcodeFormat.CODE_128,
+                Options = new EncodingOptions {
+                    Height = 400,
+                            Width = 800,
+                            PureBarcode = false,
+                            Margin = 10,
+                },
+            };
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,7 +91,17 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             e.printStackTrace();
         }
     }
-
+    @ReactMethod
+    public void printBarcode(String text) {
+        try {
+            printer.init();
+            printer.setGray(500);
+            printer.printBitmap(barcodeUtility.Write(text));
+            printer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
  
 
     @ReactMethod

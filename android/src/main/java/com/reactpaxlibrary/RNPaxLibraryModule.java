@@ -14,6 +14,11 @@ import com.pax.dal.IDAL;
 import com.pax.dal.IPrinter;
 import com.pax.neptunelite.api.NeptuneLiteUser;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
+
 public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
 
     private static final String NAME = "Pax";
@@ -35,7 +40,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             printer = dal.getPrinter();
             cashDrawer = dal.getCashDrawer();
             qrcodeUtility = new QRCodeUtil();
-           
+
 
         } catch (Exception e) {
             e.printStackTrace();

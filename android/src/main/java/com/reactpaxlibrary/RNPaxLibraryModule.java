@@ -65,7 +65,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             printer.doubleWidth(large,large);
             printer.doubleHeight(large,large);
             printer.printStr(text, null);
-            printer.printBitmap(qrcodeUtility.encodeAsBitmap(text, 512, 512 ));
+            printer.printBitmap(qrcodeUtility.encodeAsBitmap(text, 256, 512 ));
             printer.start();
         } catch (Exception e) {
             e.printStackTrace();

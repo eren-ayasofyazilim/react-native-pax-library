@@ -67,16 +67,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
         }
     }
 
-    public void fontSet(EFontTypeAscii asciiFontType, EFontTypeExtCode cFontType) {
-        try {
-            printer.fontSet(asciiFontType, cFontType);
-            logTrue("fontSet");
-        } catch (PrinterDevException e) {
-            e.printStackTrace();
-            logErr("fontSet", e.toString());
-        }
-
-    }
+ 
 
     @ReactMethod
     public void printBitmap(String base64, Double cutMode) {

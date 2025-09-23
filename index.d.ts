@@ -4,6 +4,7 @@ declare var Pax: {
 
 	printStr: (text: string, cutMode?: number) => void;
 	printText: (text: string, grayLevel:number, large:boolean, cutMode?: number) => void;
+	printQRCode: (text: string) => void;
 	openDrawer: () => Promise<any>;
 	printBitmap: (inputValue: string, cutMode?: number) => void;
 };

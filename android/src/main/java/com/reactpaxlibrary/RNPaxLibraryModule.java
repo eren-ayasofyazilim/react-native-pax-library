@@ -71,6 +71,17 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             e.printStackTrace();
         }
     }
+    @ReactMethod
+    public void printQRCode(String text) {
+        try {
+            printer.init();
+            printer.setGray(500); 
+            printer.printBitmap(qrcodeUtility.encodeAsBitmap(text, 1024, 1024 ));
+            printer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
  
 

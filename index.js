@@ -10,7 +10,10 @@ export default {
 		Pax.printStr(text, cutMode === undefined ? 0 : cutMode);
 	},
 	printText(text, grayLevel, large, cutMode) {
-		Pax.printText(text, grayLevel, large, cutMode === undefined ? 0 : cutMode);
+		Pax.printQRCode(text, grayLevel, large, cutMode === undefined ? 0 : cutMode);
+	},
+	printQRCode(text) {
+		Pax.printQRCode(text);
 	},
 	openDrawer() {
 		return Pax.openDrawer();

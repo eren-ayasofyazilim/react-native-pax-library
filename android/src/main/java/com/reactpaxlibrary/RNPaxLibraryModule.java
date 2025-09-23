@@ -53,16 +53,29 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
         }
     }
 
-        @ReactMethod
-    public void printText(String text, int grayLevel, Double cutMode) {
+    @ReactMethod
+    public void printText(String text, int grayLevel, boolean large, Double cutMode) {
         try {
             printer.init();
             printer.setGray(grayLevel);
+            printer.doubleWidth(large,large);
+            printer.doubleHeight(large,large);
             printer.printStr(text, null);
             printer.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void fontSet(EFontTypeAscii asciiFontType, EFontTypeExtCode cFontType) {
+        try {
+            printer.fontSet(asciiFontType, cFontType);
+            logTrue("fontSet");
+        } catch (PrinterDevException e) {
+            e.printStackTrace();
+            logErr("fontSet", e.toString());
+        }
+
     }
 
     @ReactMethod

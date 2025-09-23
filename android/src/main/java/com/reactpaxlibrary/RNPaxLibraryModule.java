@@ -22,6 +22,8 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     private IDAL dal;
     private IPrinter printer;
     private ICashDrawer cashDrawer;
+    private static QRCodeUtil qrcodeUtility;
+
 
     public RNPaxLibraryModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -31,6 +33,8 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             dal = NeptuneLiteUser.getInstance().getDal(reactContext);
             printer = dal.getPrinter();
             cashDrawer = dal.getCashDrawer();
+            qrcodeUtility = new QRCodeUtil();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,6 +65,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             printer.doubleWidth(large,large);
             printer.doubleHeight(large,large);
             printer.printStr(text, null);
+            printer.printBitmap(qrcodeUtility.encodeAsBitmap(text, 512, 512 ));
             printer.start();
         } catch (Exception e) {
             e.printStackTrace();

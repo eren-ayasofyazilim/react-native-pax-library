@@ -28,7 +28,6 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     private IPrinter printer;
     private ICashDrawer cashDrawer;
     private static QRCodeUtil qrcodeUtility;
-    private static BarcodeWriter barcodeUtility;
 
 
     public RNPaxLibraryModule(ReactApplicationContext reactContext) {

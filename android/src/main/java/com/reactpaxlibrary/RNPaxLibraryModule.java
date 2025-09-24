@@ -54,10 +54,8 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void printStr(String text, Double cutMode) {
         try {
-            printer.init();
             printer.setGray(3);
             printer.printStr(text, null);
-            printer.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,14 +64,12 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void printText(String text, int grayLevel, boolean large, int lineSpace, boolean invert) {
         try {
-            printer.init();
             printer.setGray(grayLevel);
             printer.spaceSet((byte) 0, (byte) lineSpace);
             printer.doubleWidth(large, large);
             printer.doubleHeight(large, large);
             printer.invert(invert);
             printer.printStr(text, null);
-            printer.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,10 +77,8 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void printQRCode(String text) {
         try {
-            printer.init();
             printer.setGray(500); 
             printer.printBitmap(qrcodeUtility.encodeAsBitmap(text, 1024, 1024 ));
-            printer.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -111,10 +105,8 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             BitMatrix bitMatrix = barcodeEncoder.encode(text, BarcodeFormat.CODE_128, 600, 200);
 
-            printer.init();
             printer.setGray(500);
             printer.printBitmap(barcodeEncoder.createBitmap(bitMatrix));
-            printer.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -127,9 +119,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
-            printer.init();
             printer.printBitmap(bitmap);
-            printer.start();
             printer.cutPaper(cutMode.intValue());
         } catch (Exception e) {
             e.printStackTrace();

@@ -92,7 +92,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     public void spaceSet(byte wordSpace, byte lineSpace) {
         try {
             printer.spaceSet(wordSpace, lineSpace);
-        } catch (PrinterDevException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

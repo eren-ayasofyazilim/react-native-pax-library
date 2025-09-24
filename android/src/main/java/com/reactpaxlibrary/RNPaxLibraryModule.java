@@ -96,6 +96,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
              printer.printStr("text", null);
              printer.printStr("text", null);
              printer.printStr("text", null);
+             printer.start();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -64,10 +64,11 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void printText(String text, int grayLevel, boolean large, boolean invert) {
+    public void printText(String text, int grayLevel, boolean large, int lineSpace, boolean invert) {
         try {
             printer.init();
             printer.setGray(grayLevel);
+            printer.spaceSet((byte) 0, (byte) lineSpace);
             printer.doubleWidth(large, large);
             printer.doubleHeight(large, large);
             printer.invert(invert);
@@ -89,13 +90,16 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
         }
     }
     @ReactMethod
-    public void spaceSet(int wordSpace, int lineSpace) {
+    public void init() {
         try {
-            printer.spaceSet((byte) wordSpace, (byte) lineSpace);
-             printer.printStr("text", null);
-             printer.printStr("text", null);
-             printer.printStr("text", null);
-             printer.printStr("text", null);
+             printer.init();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @ReactMethod
+    public void start() {
+        try {
              printer.start();
         } catch (Exception e) {
             e.printStackTrace();

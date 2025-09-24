@@ -9,8 +9,8 @@ export default {
   printStr(text, cutMode) {
     Pax.printStr(text, cutMode === undefined ? 0 : cutMode);
   },
-  printText(text, grayLevel, large, invert) {
-    Pax.printText(text, grayLevel, large, !!invert);
+  printText(text, grayLevel, large, lineSpace, invert) {
+    Pax.printText(text, grayLevel, large, lineSpace, !!invert);
   },
   printQRCode(text) {
     Pax.printQRCode(text);
@@ -18,8 +18,11 @@ export default {
   printBarcode(text) {
     Pax.printBarcode(text);
   },
-  spaceSet(wordSpace, lineSpace) {
-    Pax.spaceSet(wordSpace, lineSpace);
+  init() {
+    Pax.init();
+  },
+  start() {
+    Pax.start();
   },
   openDrawer() {
     return Pax.openDrawer();

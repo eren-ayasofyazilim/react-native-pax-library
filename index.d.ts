@@ -11,6 +11,7 @@ declare var Pax: {
   ) => void;
   printQRCode: (text: string) => void;
   printBarcode: (text: string) => void;
+  spaceSet: (wordSpace: number, lineSpace: number) => void;
   openDrawer: () => Promise<any>;
   printBitmap: (inputValue: string, cutMode?: number) => void;
 };

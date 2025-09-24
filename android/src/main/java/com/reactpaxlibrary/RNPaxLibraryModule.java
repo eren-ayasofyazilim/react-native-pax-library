@@ -13,6 +13,7 @@ import com.pax.dal.ICashDrawer;
 import com.pax.dal.IDAL;
 import com.pax.dal.IPrinter;
 import com.pax.neptunelite.api.NeptuneLiteUser;
+import static java.lang.Byte.parseByte;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -85,6 +86,14 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
             printer.printBitmap(qrcodeUtility.encodeAsBitmap(text, 1024, 1024 ));
             printer.start();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @ReactMethod
+    public void spaceSet(int wordSpace, int lineSpace) {
+        try {
+            printer.spaceSet((byte) wordSpace, (byte) lineSpace);
+        } catch (PrinterDevException e) {
             e.printStackTrace();
         }
     }

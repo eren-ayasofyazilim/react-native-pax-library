@@ -18,6 +18,9 @@ export default {
   printBarcode(text) {
     Pax.printBarcode(text);
   },
+  spaceSet(wordSpace, lineSpace) {
+    Pax.spaceSet(wordSpace, lineSpace);
+  },
   openDrawer() {
     return Pax.openDrawer();
   },

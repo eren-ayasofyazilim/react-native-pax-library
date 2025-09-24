@@ -89,9 +89,9 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
         }
     }
     @ReactMethod
-    public void spaceSet(byte wordSpace, byte lineSpace) {
+    public void spaceSet(int wordSpace, int lineSpace) {
         try {
-            printer.spaceSet(wordSpace, lineSpace);
+            printer.spaceSet((byte) wordSpace, (byte) lineSpace);
         } catch (Exception e) {
             e.printStackTrace();
         }

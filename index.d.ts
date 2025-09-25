@@ -5,7 +5,6 @@ declare var Pax: {
   printStr: (text: string, cutMode?: number) => void;
   printText: (
     text: string,
-    grayLevel: number,
     large: boolean,
     lineSpace: number,
     invert?: boolean

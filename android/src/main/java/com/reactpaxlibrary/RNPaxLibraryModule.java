@@ -54,7 +54,6 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void printStr(String text, Double cutMode) {
         try {
-            printer.setGray(3);
             printer.printStr(text, null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,9 +61,8 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void printText(String text, int grayLevel, boolean large, int lineSpace, boolean invert) {
+    public void printText(String text, boolean large, int lineSpace, boolean invert) {
         try {
-            printer.setGray(grayLevel);
             printer.spaceSet((byte) 0, (byte) lineSpace);
             printer.doubleWidth(large, large);
             printer.doubleHeight(large, large);
@@ -77,7 +75,6 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void printQRCode(String text) {
         try {
-            printer.setGray(500); 
             printer.printBitmap(qrcodeUtility.encodeAsBitmap(text, 1024, 1024 ));
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,6 +84,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     public void init() {
         try {
              printer.init();
+             printer.setGray(500);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,7 +92,7 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void start() {
         try {
-             printer.start();
+            printer.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,8 +102,6 @@ public class RNPaxLibraryModule extends ReactContextBaseJavaModule {
         try {
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             BitMatrix bitMatrix = barcodeEncoder.encode(text, BarcodeFormat.CODE_128, 600, 200);
-
-            printer.setGray(500);
             printer.printBitmap(barcodeEncoder.createBitmap(bitMatrix));
         } catch (Exception e) {
             e.printStackTrace();
